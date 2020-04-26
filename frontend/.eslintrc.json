@@ -31,6 +31,8 @@
     "object-curly-newline": "off",
     "react/prop-types": "off",
     "no-unused-expressions": "off",
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
     "react/jsx-filename-extension": [
       1,
       {
