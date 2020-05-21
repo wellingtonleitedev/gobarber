@@ -14,8 +14,9 @@ const userRouter = Router();
 
 const upload = multer(uploadConfig);
 
+userRouter.get('/', usersController.show);
 userRouter.post('/', usersController.create);
-
+userRouter.put('/', ensureAuthenticated, usersController.update);
 userRouter.patch(
   '/avatar',
   ensureAuthenticated,

@@ -30,18 +30,14 @@ describe('SendForgotPasswordEmail', () => {
       password: '123456',
     });
 
-    await sendForgotPasswordEmail.execute({
-      email: 'johndoe@email.com',
-    });
+    await sendForgotPasswordEmail.execute('johndoe@email.com');
 
     expect(sendMail).toBeCalled();
   });
 
   it('should not be able to recover password without a non existing user', async () => {
     await expect(
-      sendForgotPasswordEmail.execute({
-        email: 'johndoe@email.com',
-      }),
+      sendForgotPasswordEmail.execute('johndoe@email.com'),
     ).rejects.toBeInstanceOf(AppError);
   });
 
@@ -54,9 +50,7 @@ describe('SendForgotPasswordEmail', () => {
       password: '123456',
     });
 
-    await sendForgotPasswordEmail.execute({
-      email: 'johndoe@email.com',
-    });
+    await sendForgotPasswordEmail.execute('johndoe@email.com');
 
     expect(generate).toBeCalledWith(user.id);
   });

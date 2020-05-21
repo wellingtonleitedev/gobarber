@@ -18,7 +18,7 @@ interface ResponseDto {
 }
 
 @injectable()
-class CreateSessionService {
+export default class CreateSessionService {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
     @inject('HashProvider') private hashProvider: IHashProvider,
@@ -37,7 +37,7 @@ class CreateSessionService {
     );
 
     if (!passwordChecked) {
-      throw new AppError('Incorrect email/password not compatible 2', 401);
+      throw new AppError('Incorrect email/password not compatible', 401);
     }
 
     delete user.password;
@@ -50,5 +50,3 @@ class CreateSessionService {
     return { user, token };
   }
 }
-
-export default CreateSessionService;

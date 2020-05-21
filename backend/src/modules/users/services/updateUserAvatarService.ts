@@ -1,7 +1,7 @@
 import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/appError';
 import { injectable, inject } from 'tsyringe';
-import IStorageProvider from '@shared/containers/providers/models/IStorageProvider';
+import IStorageProvider from '@shared/containers/providers/StorageProvider/models/IStorageProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface RequestDto {

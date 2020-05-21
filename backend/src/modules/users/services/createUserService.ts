@@ -1,6 +1,6 @@
 import User from '@modules/users/infra/typeorm/entities/User';
-import AppError from '@shared/errors/appError';
 import { injectable, inject } from 'tsyringe';
+import AppError from '@shared/errors/appError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/models/IHashProvider';
 
@@ -11,17 +11,13 @@ interface RequestDto {
 }
 
 @injectable()
-class CreateUserService {
+export default class CreateUserService {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
     @inject('HashProvider') private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({
-    name,
-    email,
-    password,
-  }: RequestDto): Promise<User | undefined> {
+  public async execute({ name, email, password }: RequestDto): Promise<User> {
     const findUser = await this.usersRepository.findByEmail(email);
 
     if (findUser) {
@@ -39,5 +35,3 @@ class CreateUserService {
     return user;
   }
 }
-
-export default CreateUserService;

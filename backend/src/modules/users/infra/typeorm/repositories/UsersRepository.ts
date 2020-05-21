@@ -1,6 +1,7 @@
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Repository, getRepository } from 'typeorm';
 import CreateUserDTO from '@modules/users/dtos/CreateUserDTO';
+import FindAllProvidersDTO from '@modules/users/dtos/FindAllPRovidersDTO';
 import User from '../entities/User';
 
 export default class UsersRepository implements IUsersRepository {
@@ -24,11 +25,19 @@ export default class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async create({
-    name,
-    email,
-    password,
-  }: CreateUserDTO): Promise<User | undefined> {
+  public async findAllProviders({
+    execept_user_id,
+  }: FindAllProvidersDTO): Promise<User[]> {
+    let users = await this.ormRepository.find();
+
+    if (execept_user_id) {
+      users = users.filter(user => user.id !== execept_user_id);
+    }
+
+    return users;
+  }
+
+  public async create({ name, email, password }: CreateUserDTO): Promise<User> {
     const user = this.ormRepository.create({ name, email, password });
 
     await this.ormRepository.save(user);
