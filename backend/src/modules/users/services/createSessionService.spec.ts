@@ -1,13 +1,11 @@
 import AppError from '@shared/errors/appError';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import CreateSessionService from './createSessionService';
-import CreateUserService from './createUserService';
+import CreateSessionService from './CreateSessionService';
 import FakeBCryptHashProvider from '../providers/fakes/FakeBCryptHashProvider';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeBCryptHashProvider: FakeBCryptHashProvider;
 let createSessionService: CreateSessionService;
-let createUserService: CreateUserService;
 
 describe('CreateSession', () => {
   beforeEach(() => {
@@ -18,15 +16,10 @@ describe('CreateSession', () => {
       fakeUsersRepository,
       fakeBCryptHashProvider,
     );
-
-    createUserService = new CreateUserService(
-      fakeUsersRepository,
-      fakeBCryptHashProvider,
-    );
   });
 
   it('should be able to authenticate user', async () => {
-    const user = await createUserService.execute({
+    const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@email.com',
       password: '123456',
@@ -42,7 +35,7 @@ describe('CreateSession', () => {
   });
 
   it('should not be able to authenticate user without non existing user', async () => {
-    await createUserService.execute({
+    await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@email.com',
       password: '123456',
@@ -57,7 +50,7 @@ describe('CreateSession', () => {
   });
 
   it('should not be able to authenticate user with wrong password', async () => {
-    await createUserService.execute({
+    await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@email.com',
       password: '123456',
