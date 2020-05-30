@@ -23,8 +23,6 @@ class UpdateUserAvatarService {
       throw new AppError('Only authenticated users can change avatar.', 401);
     }
 
-    delete user.password;
-
     if (user.avatar) {
       await this.storageProvider.deleteFile(user.avatar);
     }

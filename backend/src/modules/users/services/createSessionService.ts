@@ -4,6 +4,7 @@ import authConfig from '@config/auth';
 import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/appError';
 import { injectable, inject } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/models/IHashProvider';
 
@@ -40,13 +41,11 @@ export default class CreateSessionService {
       throw new AppError('Incorrect email/password not compatible', 401);
     }
 
-    delete user.password;
-
-    const token = sign({}, authConfig.secret, {
+    const token = sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: authConfig.expiresIn,
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
-    return { user, token };
+    return { user: classToClass(user), token };
   }
 }

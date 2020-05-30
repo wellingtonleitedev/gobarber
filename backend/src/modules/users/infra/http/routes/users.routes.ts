@@ -4,6 +4,7 @@ import uploadConfig from '@config/upload';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
+import { celebrate, Segments, Joi } from 'celebrate';
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
 
@@ -15,8 +16,30 @@ const userRouter = Router();
 const upload = multer(uploadConfig);
 
 userRouter.get('/', usersController.show);
-userRouter.post('/', usersController.create);
-userRouter.put('/', ensureAuthenticated, usersController.update);
+userRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  usersController.create,
+);
+userRouter.put(
+  '/',
+  ensureAuthenticated,
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      old_password: Joi.string(),
+      password: Joi.string(),
+    },
+  }),
+  usersController.update,
+);
 userRouter.patch(
   '/avatar',
   ensureAuthenticated,

@@ -1,4 +1,6 @@
 export default {
-  secret: 'gobarberapplication',
-  expiresIn: '1d',
+  jwt: {
+    secret: 'gobarberapplication',
+    expiresIn: '1d',
+  },
 };
