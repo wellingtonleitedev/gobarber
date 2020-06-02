@@ -15,7 +15,7 @@ const userRouter = Router();
 
 const upload = multer(uploadConfig);
 
-userRouter.get('/', usersController.show);
+userRouter.get('/', ensureAuthenticated, usersController.show);
 userRouter.post(
   '/',
   celebrate({
@@ -34,8 +34,8 @@ userRouter.put(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
-      old_password: Joi.string(),
-      password: Joi.string(),
+      old_password: Joi.string().allow(''),
+      password: Joi.string().allow(''),
     },
   }),
   usersController.update,

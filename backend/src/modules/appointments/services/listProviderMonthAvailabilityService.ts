@@ -47,7 +47,7 @@ export default class ListProviderMonthAvailabilityService {
         appointment => getDate(appointment.date) === day,
       );
 
-      const compareDate = new Date(year, month - 1, day, 0, 0);
+      const compareDate = new Date(year, month - 1, day, 23, 59, 59);
 
       return {
         day,
