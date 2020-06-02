@@ -1,8 +1,16 @@
+/* eslint-disable camelcase */
 import React, { createContext, useState, useContext, useCallback } from 'react';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
+
 interface AuthState {
-  user: object;
+  user: User;
   token: string;
 }
 
@@ -12,8 +20,9 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: object;
+  user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
+  updateUser(user: User): void;
   signOut(): void;
 }
 
@@ -25,6 +34,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const token = localStorage.getItem('@GoBarber:token');
 
     if (user && token) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return {
         user: JSON.parse(user),
         token,
@@ -46,9 +57,23 @@ const AuthProvider: React.FC = ({ children }) => {
       localStorage.setItem('@GoBarber:user', JSON.stringify(user));
       localStorage.setItem('@GoBarber:token', token);
 
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       setData({ user, token });
     },
     [],
+  );
+
+  const updateUser = useCallback(
+    (user: User): void => {
+      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [data.token, setData],
   );
 
   const signOut = useCallback(() => {
@@ -59,7 +84,9 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, signIn, updateUser, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

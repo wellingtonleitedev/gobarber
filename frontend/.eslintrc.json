@@ -26,6 +26,7 @@
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "camelcase": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "object-curly-newline": "off",
@@ -33,6 +34,7 @@
     "no-unused-expressions": "off",
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",
+    "import/no-duplicates": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -47,6 +49,7 @@
         "allowExpressions": true
       }
     ],
+    "@typescript-eslint/camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
