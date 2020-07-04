@@ -8,15 +8,22 @@ import React, {
 import { AsyncStorage } from 'react-native';
 import { api } from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
+
 interface AuthContextData {
   signIn(data: SignInCredentials): Promise<void>;
   signOut(): void;
-  user: object;
+  user: User;
   loading: boolean;
 }
 
 interface AuthData {
-  user: object;
+  user: User;
   token: string;
 }
 
@@ -39,6 +46,8 @@ const AuthProvider: React.FC = ({ children }) => {
       ]);
 
       if (token[1] && user[1]) {
+        api.defaults.headers.authorization = `Bearer ${token[1]}`;
+
         setData({ token: token[1], user: JSON.parse(user[1]) });
       }
 
@@ -52,6 +61,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const response = await api.post('/sessions', { email, password });
 
     const { token, user } = response.data;
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     await AsyncStorage.multiSet([
       ['@GoBarber:token', token],
