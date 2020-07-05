@@ -1,6 +1,7 @@
 {
   "env": {
     "es6": true,
+    "browser": true,
     "jest": true
   },
   "extends": [
@@ -50,7 +51,9 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "import/no-duplicates": "off"
   },
   "settings": {
     "import/resolver": {

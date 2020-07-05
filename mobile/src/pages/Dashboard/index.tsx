@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useAuth } from '../../hooks/auth';
@@ -12,6 +12,7 @@ import {
   ProfileButton,
   UserAvatar,
   ProviderList,
+  ProviderListTitle,
   ProviderContainer,
   ProviderAvatar,
   ProviderInfo,
@@ -37,6 +38,13 @@ const Dashboard: React.FC = () => {
     });
   }, []);
 
+  const navigateToCreateAppointment = useCallback(
+    (providerId: string) => {
+      navigate('CreateAppointment', { providerId });
+    },
+    [navigate],
+  );
+
   return (
     <Container>
       <Header>
@@ -49,24 +57,33 @@ const Dashboard: React.FC = () => {
             navigate('Profile');
           }}
         >
-          <UserAvatar source={{ uri: user.avatar_url }} />
+          {user.avatar_url ? (
+            <UserAvatar source={{ uri: user.avatar_url }} />
+          ) : (
+            <Icon name="slash" size={72} />
+          )}
         </ProfileButton>
       </Header>
       <ProviderList
         keyExtractor={provider => provider.id}
+        ListHeaderComponent={
+          <ProviderListTitle>Cabeleireiros</ProviderListTitle>
+        }
         data={providers}
         renderItem={({ item: provider }) => (
           <ProviderContainer
-            onPress={() => {
-              console.log('AKIOH');
-            }}
+            onPress={() => navigateToCreateAppointment(provider.id)}
           >
             <ProviderAvatar source={{ uri: provider.avatar_url }} />
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
               <ProviderMeta>
+                <Icon name="calendar" size={14} color="#ff9000" />
+                <ProviderMetaText>Segunda à sexta</ProviderMetaText>
+              </ProviderMeta>
+              <ProviderMeta>
                 <Icon name="clock" size={14} color="#ff9000" />
-                <ProviderMetaText />
+                <ProviderMetaText>8h às 18h</ProviderMetaText>
               </ProviderMeta>
             </ProviderInfo>
           </ProviderContainer>

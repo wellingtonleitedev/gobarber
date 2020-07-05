@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import CreateSessionService from '@modules/users/services/createSessionService';
+import CreateSessionService from '@modules/users/services/CreateSessionService';
 import { classToClass } from 'class-transformer';
 
 export default class SessionsController {

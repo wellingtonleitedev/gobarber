@@ -6,7 +6,7 @@ export default class UserTokensRepository implements IUserTokensRepository {
   private ormRepository: Repository<UserToken>;
 
   constructor() {
-    this.ormRepository = getRepository(UserToken);
+    this.ormRepository = getRepository(UserToken, 'default');
   }
 
   public async findByToken(token: string): Promise<UserToken | undefined> {

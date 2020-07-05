@@ -4,7 +4,7 @@
     "module": "commonjs",
 
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "./src",
 
     "strict": true,
 
@@ -24,5 +24,8 @@
     "emitDecoratorMetadata": true,
 
     "forceConsistentCasingInFileNames": true
-  }
+  },
+
+  "include": ["./src"],
+  "exclude": ["node_modules", "dist"]
 }

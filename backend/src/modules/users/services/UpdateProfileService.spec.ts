@@ -1,6 +1,6 @@
 import AppError from '@shared/errors/appError';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import UpdateProfileService from './updateProfileService';
+import UpdateProfileService from './UpdateProfileService';
 import FakeBCryptHashProvider from '../providers/fakes/FakeBCryptHashProvider';
 
 let fakeUsersRepository: FakeUsersRepository;

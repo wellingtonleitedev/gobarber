@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { Platform } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { Platform, FlatList } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import font from '../../constraints/font';
 import { Provider } from './index';
 
@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const Header = styled.View`
   align-items: center;
   padding: 24px;
-  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() + 24 : 24};
+  padding-top: ${getStatusBarHeight() + 24}px;
   background: #28262e;
   flex-direction: row;
   justify-content: space-between;
@@ -42,7 +42,14 @@ export const ProviderList = styled(FlatList as new () => FlatList<Provider>)`
   padding: 32px 24px 16px;
 `;
 
-export const ProviderContainer = styled.TouchableOpacity`
+export const ProviderListTitle = styled.Text`
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #f4ede8;
+  font-family: ${font.medium};
+`;
+
+export const ProviderContainer = styled(RectButton)`
   background: #3e3b47;
   border-radius: 10px;
   padding: 20px;
