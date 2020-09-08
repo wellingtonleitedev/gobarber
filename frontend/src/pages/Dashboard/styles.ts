@@ -218,11 +218,6 @@ export const Calendar = styled.aside`
     padding-bottom: 0;
   }
 
-  .DayPicker,
-  .DayPicker-Month {
-    width: 100%;
-  }
-
   .DayPicker-Month {
     border-collapse: separate;
     border-spacing: 8px;

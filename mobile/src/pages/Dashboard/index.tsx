@@ -60,7 +60,7 @@ const Dashboard: React.FC = () => {
           {user.avatar_url ? (
             <UserAvatar source={{ uri: user.avatar_url }} />
           ) : (
-            <Icon name="slash" size={72} />
+            <Icon name="user" size={72} color="#f4ede8" />
           )}
         </ProfileButton>
       </Header>

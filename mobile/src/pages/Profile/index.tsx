@@ -142,14 +142,18 @@ const Profile: React.FC = () => {
       >
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex: 1 }}
+          contentContainerStyle={{ flex: 1, paddingVertical: 180 }}
         >
           <Container>
             <BackButton onPress={goBack}>
               <Icon name="chevron-left" size={24} color="#999591" />
             </BackButton>
             <UserAvatarButton onPress={handleUpdateAvatar}>
-              <UserAvatar source={{ uri: user.avatar_url }} />
+              {user.avatar_url ? (
+                <UserAvatar source={{ uri: user.avatar_url }} />
+              ) : (
+                <Icon name="user" size={186} color="#f4ede8" />
+              )}
             </UserAvatarButton>
             <View>
               <Title>Meu perfil</Title>

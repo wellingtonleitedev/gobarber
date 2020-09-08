@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: gobarber
+    networks:
+      - gobarber-networks
+
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: gobarber
+    networks:
+      - gobarber-networks
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - gobarber-networks
+
+networks:
+  gobarber-networks:
+    driver: bridge

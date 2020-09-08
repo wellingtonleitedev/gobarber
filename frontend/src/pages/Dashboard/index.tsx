@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { FiPower, FiClock, FiSlash } from 'react-icons/fi';
+import { FiPower, FiClock, FiUser } from 'react-icons/fi';
 import { isToday, isAfter, parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
             {user.avatar_url ? (
               <img src={user.avatar_url} alt={user.name} />
             ) : (
-              <FiSlash size={56} />
+              <FiUser size={56} />
             )}
             <div>
               <span>Bem vindo,</span>
@@ -179,7 +179,7 @@ const Dashboard: React.FC = () => {
                     alt={nextAppointment.user.name}
                   />
                 ) : (
-                  <FiSlash size={80} />
+                  <FiUser size={80} />
                 )}
                 <strong>{nextAppointment.user.name}</strong>
                 <span>
@@ -210,7 +210,7 @@ const Dashboard: React.FC = () => {
                       alt={appointment.user.name}
                     />
                   ) : (
-                    <FiSlash size={56} />
+                    <FiUser size={56} />
                   )}
                   <strong>{appointment.user.name}</strong>
                 </div>
@@ -238,7 +238,7 @@ const Dashboard: React.FC = () => {
                       alt={appointment.user.name}
                     />
                   ) : (
-                    <FiSlash size={56} />
+                    <FiUser size={56} />
                   )}
                   <strong>{appointment.user.name}</strong>
                 </div>

@@ -1,12 +1,5 @@
 import React, { useCallback, useRef, ChangeEvent } from 'react';
-import {
-  FiMail,
-  FiUser,
-  FiLock,
-  FiCamera,
-  FiSlash,
-  FiArrowLeft,
-} from 'react-icons/fi';
+import { FiMail, FiUser, FiLock, FiCamera, FiArrowLeft } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -136,7 +129,7 @@ const Profile: React.FC = () => {
             {user.avatar_url ? (
               <img src={user.avatar_url} alt={user.name} />
             ) : (
-              <FiSlash size={186} />
+              <FiUser size={186} />
             )}
 
             <label htmlFor="avatar">
@@ -171,7 +164,7 @@ const Profile: React.FC = () => {
             type="password"
             placeholder="Confirmação da Senha"
           />
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit">Confirmar mudanças</Button>
         </Form>
       </Content>
     </Container>

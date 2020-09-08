@@ -23,6 +23,8 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const UserAvatarButton = styled(RectButton)`
+  align-items: center;
+  justify-content: center;
   margin-top: 32px;
 `;
 

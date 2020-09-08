@@ -53,7 +53,11 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-      await api.post('users', { email: data.email, password: data.password });
+      await api.post('users', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
 
       Alert.alert(
         'Cadastro realizado com sucesso',
@@ -121,7 +125,7 @@ const SignUp: React.FC = () => {
                 onSubmitEditing={() => formRef.current?.submitForm()}
               />
               <Button onPress={() => formRef.current?.submitForm()}>
-                Entrar
+                Cadastrar
               </Button>
             </Form>
           </Container>

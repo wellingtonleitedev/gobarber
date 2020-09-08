@@ -21,7 +21,7 @@ app.use('/files', express.static(uploadConfig.uploadFolder));
 app.use(rateLimiter);
 app.use(routes);
 app.use(errors());
-// app.use(errorHandling);
+app.use(errorHandling);
 
 app.listen(3333, () => {
   console.log('👍, Server started');
