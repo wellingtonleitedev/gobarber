@@ -44,14 +44,12 @@
 </p>
 
 <h1 align="center">
-  <img align="center" width="45%" src="https://github.com/wellingtonleitedev/gobarber/blob/master/assets/dashboard-mobile.png" alt="Mobile Screen"/>
-
-  <img align="center" width="45%" src="https://github.com/wellingtonleitedev/gobarber/blob/master/assets/dashboard-web.png" alt="Web Screen"/>
+  <img align="center" width="100%" src="https://github.com/wellingtonleitedev/gobarber/blob/master/assets/dashboard.png" alt="Screens Demo"/>
 </h1>
 
 <h3 align="center">Video Demo on Loom.</h3>
 <p align="center">
-  <a href="https://www.loom.com/share/07b4299951c345589f48bd422d0e447f">
+  <a href="https://www.loom.com/share/59246947e438438cafdf10740a3feda9">
     <img width="15%" src="https://i.pinimg.com/originals/51/c5/2c/51c52cb5156376f013275fa1f5753b7c.png" />
   </a>
 </p>
